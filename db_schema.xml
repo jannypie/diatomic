@@ -55,10 +55,6 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="positions" row="id" />
 </row>
-<row name="permission_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="permissions" row="id" />
-</row>
 <row name="timestamps" null="1" autoincrement="0">
 <datatype>TIMESTAMP</datatype>
 <default>NULL</default></row>
@@ -66,22 +62,11 @@
 <part>id</part>
 </key>
 </table>
-<table x="469" y="831" name="positions">
+<table x="847" y="916" name="positions">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="title" null="1" autoincrement="0">
-<datatype>MEDIUMTEXT</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="458" y="1004" name="permissions">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="name" null="1" autoincrement="0">
 <datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
@@ -190,7 +175,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1025" y="943" name="experiment_categories">
+<table x="1025" y="943" name="experiments_categories">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -206,7 +191,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1445" y="694" name="step_equipment">
+<table x="1445" y="694" name="steps_equipment">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -251,7 +236,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1465" y="841" name="step_tags">
+<table x="1465" y="841" name="steps_tags">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="steps" row="id" />
