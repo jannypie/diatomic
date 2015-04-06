@@ -1,10 +1,7 @@
 # diatomic
 A simple app in Rails and JavaScript for creating digital lab notes.
 
-[schema](#schema)
-[models](#models)
-[goals](#goals)
-[user stories](#user stories)
+[schema](#schema) | [models](#models) | [goals](#goals) | [user stories](#user stories)
 
 ## App Design
 
