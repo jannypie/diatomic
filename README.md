@@ -62,6 +62,7 @@ Equipment
 ###<a name="goals"></a> Stretch Goals
 - Experiment Templates, with pre-defined sets of procedures that are created when a template is chosen (creates new experiment, creates new procedures with existing steps)
 - Permissions related to Position, with Admin all access, Primary Invesigator with experiment/reviewer access - not too sure about this
+- Steps include time started and time ended
 
 ##<a name="user_stories"></a> User Stories
 1. As an experiment creator, I want to:
@@ -70,9 +71,12 @@ Equipment
   - Add information to my experiment through description and conclusions
   - Have my experiment reviewed
   - Add categories to my experiments
+  - See my experiments
+  - See other's experiments
 2. As a reviewer, I want to:
   - See a completed experiment
   - Once I have read the experiment, "sign" that I have reviewed it
+  - See a list of experiments I have reviewed
 3. As a technician, I want to:
   - Add steps to an experiment I'm working on
   - Add comments to steps that I'm working on
@@ -80,10 +84,13 @@ Equipment
   - Record what room I did the work in
   - Mark that a step has been completed
   - "Sign" that I was the user that completed a step
+  - See procedures I've completed
 4. As a scientist (creator or technician), I want to be able to:
-  - create new steps
-  - add tags to steps
-  - add equipment to steps
+  - Create new steps
+  - Add tags to steps
+  - Add equipment to steps
+  - See steps already created
 5. As a lab manager, I want to:
   - Be assigned to a room to manage
   - Add/remove/edit equipment assigned to my room
+  - See a list of equipment assigned to my room
