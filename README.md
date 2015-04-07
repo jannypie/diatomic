@@ -63,6 +63,7 @@ Equipment
 - Experiment Templates, with pre-defined sets of procedures that are created when a template is chosen (creates new experiment, creates new procedures with existing steps)
 - Permissions related to Position, with Admin all access, Primary Invesigator with experiment/reviewer access - not too sure about this
 - Steps include time started and time ended
+- Equipment includes calibration data
 
 ##<a name="user_stories"></a> User Stories
 1. As an experiment creator, I want to:
