@@ -17,7 +17,7 @@
 //= require angular-resource/angular-resource
 //= require angular-rails-templates
 //= require_tree .
-var controllers = angular.module('controllers',[]);
+
 
 var diatomic = angular.module('diatomic',[
   'templates',
@@ -34,8 +34,10 @@ diatomic.config(['$routeProvider', function($routeProvider) {
   }
 ]);
 
+var controllers = angular.module('controllers',[]);
 
 // Move this to controllers folder when you get that working
+// think I have to convert from js to coffee
 var controllers = angular.module('controllers');
 
 controllers.controller("ExperimentsController", [
