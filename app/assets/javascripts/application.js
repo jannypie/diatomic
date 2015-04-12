@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require angular/angular
 //= require_tree .
+
+diatomic = angular.module('diatomic',[
+])
