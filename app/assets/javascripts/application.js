@@ -15,11 +15,13 @@
 //= require angular/angular
 //= require angular-route/angular-route
 //= require angular-rails-templates
+//= require angular-resource/angular-resource
 //= require_tree .
 
 diatomic = angular.module('diatomic',[
   'templates',
   'ngRoute',
+  'ngResource',
   'controllers'
 ])
 
@@ -58,8 +60,9 @@ experiments = [
 
 
 controllers = angular.module('controllers',[])
+
 controllers.controller("HomeController", [
-  '$scope', '$routeParams', '$location', function($scope, $routeParams, $location) {
+  '$scope', '$routeParams', '$location', '$resource', function($scope, $routeParams, $location, $resource) {
     var keywords;
     $scope.search = function(keywords) {
       return $location.path("/").search('keywords', keywords);
