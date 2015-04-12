@@ -19,48 +19,4 @@
 //= require_tree .
 
 
-var diatomic = angular.module('diatomic',[
-  'templates',
-  'ngRoute',
-  'ngResource',
-  'controllers'
-]);
 
-diatomic.config(['$routeProvider', function($routeProvider) {
-  return $routeProvider.when('/', {
-        templateUrl: "index.html",
-        controller: 'ExperimentsController'
-      });
-  }
-]);
-
-var controllers = angular.module('controllers',[]);
-
-// Move this to controllers folder when you get that working
-// think I have to convert from js to coffee
-var controllers = angular.module('controllers');
-
-controllers.controller("ExperimentsController", [
-  '$scope', '$routeParams', '$location', '$resource', function($scope, $routeParams, $location, $resource) {
-    var keywords;
-    $scope.search = function(keywords) {
-      return $location.path("/").search('keywords', keywords);
-    };
-
-    var Experiment;
-    Experiment = $resource('/experiments/:experimentId', {
-      experimentId: "@id",
-      format: 'json'
-    });
-
-    if ($routeParams.keywords) {
-      Experiment.query({
-        keywords: $routeParams.keywords
-      }, function(results) {
-        return $scope.experiments = results;
-      });
-    } else {
-      return $scope.experiments = [];
-    }
-  }
-]);
