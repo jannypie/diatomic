@@ -29,6 +29,7 @@ describe("ExperimentsController", function() {
       });
     });
   };
+
   beforeEach(module("diatomic"));
   afterEach(function() {
     httpBackend.verifyNoOutstandingExpectation();

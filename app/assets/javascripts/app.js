@@ -10,6 +10,9 @@
     return $routeProvider.when('/', {
           templateUrl: "index.html",
           controller: 'ExperimentsController'
+        }).when('/experiments/:experimentId', {
+          templateUrl: "show.html",
+          controller: 'ExperimentsController'
         });
     }
   ]);
