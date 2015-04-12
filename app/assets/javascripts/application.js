@@ -13,7 +13,26 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular/angular
+//= require angular-route/angular-route
+//= require angular-rails-templates
 //= require_tree .
 
 diatomic = angular.module('diatomic',[
+  'templates',
+  'ngRoute',
+  'controllers',
+])
+
+diatomic.config([ '$routeProvider',
+  ($routeProvider)->
+    $routeProvider
+      .when('/',
+        templateUrl: "index.html"
+        controller: 'ExperimentsController'
+      )
+])
+
+controllers = angular.module('controllers',[])
+controllers.controller("ExperimentsController", [ '$scope',
+  ($scope)->
 ])
