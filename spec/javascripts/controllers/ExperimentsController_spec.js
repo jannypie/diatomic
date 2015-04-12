@@ -29,7 +29,6 @@ describe("ExperimentsController", function() {
       });
     });
   };
-
   beforeEach(module("diatomic"));
   afterEach(function() {
     httpBackend.verifyNoOutstandingExpectation();
@@ -41,12 +40,12 @@ describe("ExperimentsController", function() {
   describe('controller initialization', function() {
     describe('when no keywords present', function() {
       beforeEach(setupController());
-      return it('defaults to no experiments', function() {
-        return expect(scope.experiments).toEqualData([]);
+      it('defaults to no experiments', function() {
+        expect(scope.experiments).toEqualData([]);
       });
     });
       // 2. check that on init WITH keywords, experiments is populated
-    return describe('with keywords', function() {
+    describe('with keywords', function() {
       var keywords, experiments;
       keywords = 'foo';
       experiments = [
@@ -62,21 +61,21 @@ describe("ExperimentsController", function() {
         setupController(keywords, experiments);
         return httpBackend.flush();
       });
-      return it('calls the back-end', function() {
-        return expect(scope.experiments).toEqualData(experiments);
+      it('calls the back-end', function() {
+        expect(scope.experiments).toEqualData(experiments);
       });
     });
   });
-  return describe('search()', function() {
+  describe('search()', function() {
     beforeEach(function() {
       return setupController();
     });
-    return it('redirects to itself with a keyword param', function() {
+    it('redirects to itself with a keyword param', function() {
       var keywords;
       keywords = 'foo';
       scope.search(keywords);
       expect(location.path()).toBe("/");
-      return expect(location.search()).toEqualData({
+      expect(location.search()).toEqualData({
         keywords: keywords
       });
     });
