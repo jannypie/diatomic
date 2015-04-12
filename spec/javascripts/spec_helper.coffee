@@ -5,6 +5,10 @@
 # require support/your-support-file
 #= require angular-mocks/angular-mocks
 #
+beforeEach ->
+  this.addMatchers
+    toEqualData: (expected)-> return angular.equals(this.actual, expected)
+#
 # PhantomJS (Teaspoons default driver) doesn't have support for Function.prototype.bind, which has caused confusion.
 # Use this polyfill to avoid the confusion.
 #= require support/bind-poly
