@@ -14,60 +14,50 @@
 //= require jquery_ujs
 //= require angular/angular
 //= require angular-route/angular-route
+//= require angular-resource/angular-resource
 //= require angular-rails-templates
 //= require_tree .
 
-diatomic = angular.module('diatomic',[
+
+var diatomic = angular.module('diatomic',[
   'templates',
   'ngRoute',
+  'ngResource',
   'controllers'
-])
+]);
 
 diatomic.config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-      .when('/', {
+  return $routeProvider.when('/', {
         templateUrl: "index.html",
-        controller: 'HomeController'
-      })
+        controller: 'ExperimentsController'
+      });
   }
-])
+]);
 
+var controllers = angular.module('controllers',[]);
 
-experiments = [
-  {
-    id: 5,
-    name: 'Sweet Potato Fries'
-  },
-  {
-    id: 1,
-    name: 'Baked Potato w/ Cheese'
-  },
-  {
-    id: 2,
-    name: 'Garlic Mashed Potatoes'
-  },
-  {
-    id: 3,
-    name: 'Potatoes Au Gratin'
-  },
-  {
-    id: 4,
-    name: 'Baked Brussel Sprouts'
-  },
-]
+// Move this to controllers folder when you get that working
+// think I have to convert from js to coffee
+var controllers = angular.module('controllers');
 
-
-controllers = angular.module('controllers',[])
-controllers.controller("HomeController", [
-  '$scope', '$routeParams', '$location', function($scope, $routeParams, $location) {
+controllers.controller("ExperimentsController", [
+  '$scope', '$routeParams', '$location', '$resource', function($scope, $routeParams, $location, $resource) {
     var keywords;
     $scope.search = function(keywords) {
       return $location.path("/").search('keywords', keywords);
     };
+
+    var Experiment;
+    Experiment = $resource('/experiments/:experimentId', {
+      experimentId: "@id",
+      format: 'json'
+    });
+
     if ($routeParams.keywords) {
-      keywords = $routeParams.keywords.toLowerCase();
-      return $scope.experiments = experiments.filter(function(experiment) {
-        return experiment.name.toLowerCase().indexOf(keywords) !== -1;
+      Experiment.query({
+        keywords: $routeParams.keywords
+      }, function(results) {
+        return $scope.experiments = results;
       });
     } else {
       return $scope.experiments = [];

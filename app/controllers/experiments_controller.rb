@@ -1,5 +1,10 @@
 class ExperimentsController < ApplicationController
-  # def index
+  def index
+    @experiments = if params[:keywords]
+                     Experiment.where('title ilike ?',"%#{params[:keywords]}%")
+                   else
+                     []
+                   end
 
-  # end
+  end
 end

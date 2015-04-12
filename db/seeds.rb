@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Experiment.create!(title: 'Baked Potato w/ Cheese')
+Experiment.create!(title: 'Garlic Mashed Potatoes')
+Experiment.create!(title: 'Potatoes Au Gratin')
+Experiment.create!(title: 'Baked Brussel Sprouts')
