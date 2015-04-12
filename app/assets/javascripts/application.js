@@ -20,19 +20,57 @@
 diatomic = angular.module('diatomic',[
   'templates',
   'ngRoute',
-  'controllers',
+  'controllers'
 ])
 
-diatomic.config([ '$routeProvider',
-  ($routeProvider)->
+diatomic.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/',
-        templateUrl: "index.html"
-        controller: 'ExperimentsController'
-      )
+      .when('/', {
+        templateUrl: "index.html",
+        controller: 'HomeController'
+      })
+  }
 ])
+
+
+experiments = [
+  {
+    id: 5,
+    name: 'Sweet Potato Fries'
+  },
+  {
+    id: 1,
+    name: 'Baked Potato w/ Cheese'
+  },
+  {
+    id: 2,
+    name: 'Garlic Mashed Potatoes'
+  },
+  {
+    id: 3,
+    name: 'Potatoes Au Gratin'
+  },
+  {
+    id: 4,
+    name: 'Baked Brussel Sprouts'
+  },
+]
+
 
 controllers = angular.module('controllers',[])
-controllers.controller("ExperimentsController", [ '$scope',
-  ($scope)->
-])
+controllers.controller("HomeController", [
+  '$scope', '$routeParams', '$location', function($scope, $routeParams, $location) {
+    var keywords;
+    $scope.search = function(keywords) {
+      return $location.path("/").search('keywords', keywords);
+    };
+    if ($routeParams.keywords) {
+      keywords = $routeParams.keywords.toLowerCase();
+      return $scope.experiments = experiments.filter(function(experiment) {
+        return experiment.name.toLowerCase().indexOf(keywords) !== -1;
+      });
+    } else {
+      return $scope.experiments = [];
+    }
+  }
+]);
