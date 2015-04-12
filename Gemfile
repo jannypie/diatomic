@@ -35,6 +35,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bower-rails'
 gem 'angular-rails-templates'
+gem 'teaspoon'
+gem 'phantomjs'
 
 gem "foreman"
 group :production, :staging do
