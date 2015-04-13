@@ -1,82 +1,56 @@
-describe("ExperimentsController", function() {
-  // declare vars to they can escape the $inject closure
-  var ctrl, httpBackend, location, resource, routeParams, scope, setupController;
+describe("ExperimentsController", function(){
+  var ctrl, exp, expId, httpBackend, routeParams, scope, setupController;
   scope = null;
   ctrl = null;
-  location = null;
   routeParams = null;
-  resource = null;
   httpBackend = null;
+  expId = 10;
+  exp = {
+    id: expId,
+    title: "E.coli Gram Stain",
+    description: "Basic method for determining E.coli gram stain restuls."
+  };
 
-  // users Angular $inject to access mock dependencies bc
-  // routeParams can only be manipulated during injection
-  setupController = function(keywords, results) {
-    return inject(function($location, $routeParams, $rootScope, $resource, $httpBackend, $controller) {
-      var request;
+  setupController = function(experimentExists){
+    if (experimentExists == null) {
+      experimentExists = true;
+    };
+    return inject(function($location, $routeParams, $rootScope, $httpBackend, $controller){
+      var location = $location;
       scope = $rootScope.$new();
-      location = $location;
-      resource = $resource;
       httpBackend = $httpBackend;
       routeParams = $routeParams;
-      routeParams.keywords = keywords;
-      if (results) {
-        request = new RegExp("\/experiments.*keywords=" + keywords);
-        httpBackend.expectGET(request).respond(results);
-      }
-      return ctrl = $controller("ExperimentsController", {
-        $scope: scope,
-        $location: location
+      routeParams.experimentId = expId;
+
+      var request = new RegExp("\/experiments/" + expId);
+      var results = experimentExists ? [200, exp] : [404];
+      httpBackend.expectGET(request).respond(results[0], results[1]);
+
+      return ctrl = $controller('ExperimentsController', {
+        $scope: scope
       });
     });
   };
+
   beforeEach(module("diatomic"));
-  afterEach(function() {
+  afterEach(function(){
     httpBackend.verifyNoOutstandingExpectation();
     return httpBackend.verifyNoOutstandingRequest();
   });
 
-  // 1. check that on init with no keywords, experiments is empty
-  // toEqualData set up in spec_helper to compare values
   describe('controller initialization', function() {
-    describe('when no keywords present', function() {
+    describe('experiment is found', function() {
       beforeEach(setupController());
-      it('defaults to no experiments', function() {
-        expect(scope.experiments).toEqualData([]);
+      it('loads the experiment', function() {
+        httpBackend.flush();
+        expect(scope.experiment).toEqualData(exp);
       });
     });
-      // 2. check that on init WITH keywords, experiments is populated
-    describe('with keywords', function() {
-      var keywords, experiments;
-      keywords = 'foo';
-      experiments = [
-        {
-          id: 2,
-          type: 'Baked Potatoes'
-        }, {
-          id: 4,
-          type: 'Potatoes Au Gratin'
-        }
-      ];
-      beforeEach(function() {
-        setupController(keywords, experiments);
-        return httpBackend.flush();
-      });
-      it('calls the back-end', function() {
-        expect(scope.experiments).toEqualData(experiments);
-      });
-    });
-  });
-  describe('search()', function() {
-    beforeEach(function() {
-      return setupController();
-    });
-    it('redirects to itself with a keyword param', function() {
-      var keywords;
-      keywords = 'foo';
-      scope.search(keywords);
-      expect(location.path()).toBe("/");
-      expect(location.search()).toEqualData({
-        keywords: keywords
+    describe('experiment is not found', function() {
+      beforeEach(setupController(false));
+      it('loads the given experiment', function() {
+        httpBackend.flush();
+        expect(scope.experiment).toBe(null);
       });
     });
   });
