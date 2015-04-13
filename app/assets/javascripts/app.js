@@ -7,10 +7,22 @@
   ]);
 
   diatomic.config(['$routeProvider', function($routeProvider) {
-    return $routeProvider.when('/', {
-          templateUrl: "index.html",
-          controller: 'ExperimentsController'
-        });
+    $routeProvider
+      .when('/', {
+        templateUrl: "index.html",
+        controller: 'SearchController'
+      })
+      .when('/experiments/new', {
+        templateUrl: "experiments/form.html",
+        controller: 'ExperimentsController'
+      })
+      .when('/experiments/:experimentId', {
+        templateUrl: "experiments/show.html",
+        controller: 'ExperimentsController'
+      }).when('/experimentId/:experimentId/edit', {
+        templateUrl: "experiments/show.html",
+        controller: 'ExperimentsController'
+      });
     }
   ]);
 

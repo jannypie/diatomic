@@ -1,1 +1,0 @@
-json.(experiment, :id, :title, :description)
