@@ -62,7 +62,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="847" y="916" name="positions">
+<table x="800" y="910" name="positions">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -73,13 +73,17 @@
 <part>id</part>
 </key>
 </table>
-<table x="843" y="645" name="experiments">
+<table x="794" y="650" name="experiments">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="title" null="0" autoincrement="0">
 <datatype>VARCHAR</datatype>
 <default>'NULL'</default></row>
+<row name="target_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="targets" row="id" />
+</row>
 <row name="description" null="1" autoincrement="0">
 <datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
@@ -97,25 +101,21 @@
 <row name="timestamps" null="1" autoincrement="0">
 <datatype>TIMESTAMP</datatype>
 <default>NULL</default></row>
+<row name="commentable" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="comments" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1055" y="700" name="procedures">
+<table x="1024" y="683" name="procedures">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="experiment_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="experiments" row="id" />
-</row>
-<row name="step_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="steps" row="id" />
-</row>
-<row name="location_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="locations" row="id" />
 </row>
 <row name="completed?" null="1" autoincrement="0">
 <datatype>BINARY</datatype>
@@ -124,9 +124,14 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<row name="comments" null="1" autoincrement="0">
-<datatype>MEDIUMTEXT</datatype>
-<default>NULL</default></row>
+<row name="location_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="locations" row="id" />
+</row>
+<row name="commentable" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="comments" row="id" />
+</row>
 <row name="timestamps" null="1" autoincrement="0">
 <datatype>TIMESTAMP</datatype>
 <default>NULL</default></row>
@@ -134,22 +139,26 @@
 <part>id</part>
 </key>
 </table>
-<table x="1268" y="700" name="steps">
+<table x="1442" y="701" name="steps">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="instruction" null="1" autoincrement="0">
 <datatype>BINARY</datatype>
 <default>NULL</default></row>
+<row name="commentable" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="comments" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1057" y="628" name="join tables">
+<table x="1033" y="638" name="join tables">
 <key type="PRIMARY" name="">
 </key>
 </table>
-<table x="1263" y="790" name="locations">
+<table x="1434" y="856" name="locations">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -164,7 +173,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1268" y="942" name="categories">
+<table x="1238" y="1150" name="categories">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -175,7 +184,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1025" y="943" name="experiments_categories">
+<table x="985" y="1103" name="experiments_categories">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -191,7 +200,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1445" y="694" name="steps_equipment">
+<table x="1574" y="694" name="steps_equipment">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -207,7 +216,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="1667" y="703" name="equipment">
+<table x="1794" y="826" name="equipment">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -221,39 +230,88 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="locations" row="id" />
 </row>
+<row name="commentable" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="comments" row="id" />
+</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1686" y="860" name="tags">
+<table x="1451" y="583" name="tags">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">
 <datatype>MEDIUMTEXT</datatype>
 <default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="1465" y="841" name="steps_tags">
-<row name="id" null="1" autoincrement="1">
+<row name="step_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="steps" row="id" />
 </row>
-<row name="step_id" null="1" autoincrement="0">
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1600" y="648" name="join tables">
+<key type="PRIMARY" name="">
+</key>
+</table>
+<table x="1203" y="673" name="procedures_steps">
+<row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="tag_id" null="1" autoincrement="0">
+<row name="procedure_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="tags" row="id" />
+<default>NULL</default><relation table="procedures" row="id" />
+</row>
+<row name="step_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="steps" row="id" />
+</row>
+<row name="commentable" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="comments" row="id" />
 </row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="1471" y="632" name="join tables">
+<table x="1231" y="976" name="comments">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="body" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="timestamps" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="644" y="655" name="targets">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="type" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="information" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="safety_level" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
 </key>
 </table>
 </sql>
