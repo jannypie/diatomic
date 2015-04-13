@@ -19,8 +19,8 @@
       .when('/experiments/:experimentId', {
         templateUrl: "experiments/show.html",
         controller: 'ExperimentsController'
-      }).when('/experimentId/:experimentId/edit', {
-        templateUrl: "experiments/show.html",
+      }).when('/experiments/:experimentId/edit', {
+        templateUrl: "experiments/form.html",
         controller: 'ExperimentsController'
       });
     }

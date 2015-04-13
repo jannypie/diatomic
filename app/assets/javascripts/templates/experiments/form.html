@@ -1,0 +1,31 @@
+<form class="form-horizontal" role="form" class="edit-user">
+  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
+    <label
+      for="title"
+      class="col-md-2 control-label col-md-offset-2">
+      Title
+    </label>
+    <div class="col-md-5">
+      <input type="text" name="title" class="form-control" placeholder="e.g. Limonene Extraction" ng-model="experiment.title">
+    </div>
+  </div>
+  <div class="form-group" ng-class="{'has-warning has-feedback':errors.name}">
+    <label
+      for="description"
+      class="col-md-2 control-label col-md-offset-2">
+      Description
+    </label>
+    <div class="col-md-5">
+      <textarea name="description" class="form-control" ng-model='experiment.description' placeholder="e.g. Steam Distillation of Orange Peel.">
+      </textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-3">
+      <button class="btn btn-default" ng-click="cancel()"> Cancel</button>
+    </div>
+    <div class="col-md-4 text-right">
+      <button class="btn btn-primary" ng-click="save()"> Save </button>
+    </div>
+  </div>
+</form>
