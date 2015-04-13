@@ -44,7 +44,7 @@
       $scope.save = function() {
         var onError;
         onError = function(_httpResponse) {
-          return flash.error = "Something went wrong";
+          console.log("Error");
         };
         if ($scope.experiment.id) {
           return $scope.experiment.$save((function() {
