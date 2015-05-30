@@ -1,12 +1,12 @@
 class ExperimentsController < ApplicationController
   def index
-    experiments = if params[:keywords]
+    @experiments = if params[:keywords]
                      Experiment.where('title ilike ?',"%#{params[:keywords]}%")
                    else
                      []
                    end
 
-    render json: experiments
+    # render json: experiments
   end
 
   def show
